@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang ="en0">
+<head>
+<p id="risultato"></p>
+
+<script>
+
+function mostraDati() {
+
+    let nome = document.getElementById("fname").value;
+    let cognome = document.getElementById("lname").value;
+
+    document.getElementById("risultato").innerHTML =
+        nome + " " + cognome;
+
+    document.getElementById("risultato").style.color = "red";
+}
+
+</script>
+
+</body>
+</html>
