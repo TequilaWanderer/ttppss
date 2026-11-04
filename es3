@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>modulino dati</title>
+</head>
+<body bgcolor="#e6e6e6">
+
+<font face="Courier New">
+<h2>INSERISCI I DATI!!!</h2>
+
+<form name="form1">
+  Nome: <input type="text" id="n"><br><br>
+  Cognome: <input type="text" id="c"><br><br>
+  Et&agrave;: <input type="number" id="e"><br><br>
+  
+  Sesso:<br>
+  <input type="radio" name="s" value="M" id="s1"> M
+  <input type="radio" name="s" value="F" id="s2"> F
+  <br><br>
+  
+  Indirizzo: <input type="text" id="ind"><br><br>
+  Citt&agrave;: <input type="text" id="cit"><br><br>
+  
+  Provincia: 
+  <select id="prv">
+    <option value="RM">Roma</option>
+    <option value="MI">Milano</option>
+    <option value="NA">Napoli</option>
+    <option value="TO">Torino</option>
+  </select>
+  <br><br>
+  
+  Sport:<br>
+  <input type="checkbox" name="sp" value="Calcio"> Calcio<br>
+  <input type="checkbox" name="sp" value="Basket"> Basket<br>
+  <input type="checkbox" name="sp" value="Nuoto"> Nuoto<br><br>
+  
+  Note/Commenti:<br>
+  <textarea id="comm" rows="3" cols="25"></textarea><br><br>
+  
+  <input type="button" value="CLICK QUI PER STAMPARE" onclick="invia()">
+</form>
+
+<hr>
+
+<h3>RISULTATO TABELLA:</h3>
+
+<table border="3" cellpadding="5" bgcolor="#ffffff" id="tabella" style="display:none;">
+  <tr>
+    <th>CAMPO</th>
+    <th>DATI INSERITI</th>
+  </tr>
+  <tr><td>Nome</td><td id="r_nome"></td></tr>
+  <tr><td>Cognome</td><td id="r_cognome"></td></tr>
+  <tr><td>Eta</td><td id="r_eta"></td></tr>
+  <tr><td>Sesso</td><td id="r_sesso"></td></tr>
+  <tr><td>Indirizzo</td><td id="r_ind"></td></tr>
+  <tr><td>Citta</td><td id="r_cit"></td></tr>
+  <tr><td>Provincia</td><td id="r_prv"></td></tr>
+  <tr><td>Sport</td><td id="r_sport"></td></tr>
+  <tr><td>Commenti</td><td id="r_comm"></td></tr>
+</table>
+
+</font>
+
+<script>
+function invia() {
+  document.getElementById('r_nome').innerText = document.getElementById('n').value;
+  document.getElementById('r_cognome').innerText = document.getElementById('c').value;
+  document.getElementById('r_eta').innerText = document.getElementById('e').value;
+  
+  // sesso
+  var sex = "";
+  if(document.getElementById('s1').checked) sex = "M";
+  if(document.getElementById('s2').checked) sex = "F";
+  document.getElementById('r_sesso').innerText = sex;
+  
+  document.getElementById('r_ind').innerText = document.getElementById('ind').value;
+  document.getElementById('r_cit').innerText = document.getElementById('cit').value;
+  document.getElementById('r_prv').innerText = document.getElementById('prv').value;
+  
+  // sport presi a mano
+  var lista_sport = "";
+  var chk = document.getElementsByName('sp');
+  for(var i=0; i<chk.length; i++){
+    if(chk[i].checked){
+      lista_sport = lista_sport + chk[i].value + " ";
+    }
+  }
+  document.getElementById('r_sport').innerText = lista_sport;
+  
+  document.getElementById('r_comm').innerText = document.getElementById('comm').value;
+  
+  // mostra tabella
+  document.getElementById('tabella').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
