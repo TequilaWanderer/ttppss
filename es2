@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Calcolo IP</title>
+</head>
+
+<body>
+
+<h2>Calcolo indirizzo IP</h2>
+
+<input type="text" id="ip" placeholder="192.168.1.10">
+
+<br><br>
+
+<input type="text" id="pl" placeholder="24">
+
+<br><br>
+
+<button onclick="calcola()">Calcola</button>
+<br><br>
+
+<input type="text" id="bin" size="40">
+<br><br>
+
+<input type="text" id="mask">
+<script>
+
+function calcola(){
+    var ip = document.getElementById("ip").value;
+    var pl = parseInt(document.getElementById("pl").value);
+
+    var pezzi = ip.split(".");
+    var binario = "";
+
+    for(var i=0; i<4; i++){
+        binario = binario + parseInt(pezzi[i]).toString(2).padStart(8,"0");
+
+        if(i<3){
+            binario = binario + ".";
+        }
+    }
+
+    document.getElementById("bin").value = binario;
+
+    var mask = "";
+    var bit = "";
+
+    for(var i=0; i<32; i++){
+        if(i < pl){
+            bit = bit + "1";
+        }else{
+            bit = bit + "0";
+        }
+    }
+
+    for(var i=0; i<4; i++)
+    {
+        var parte = bit.substring(i*8, i*8+8);
+        mask = mask + parseInt(parte,2);
+
+        if(i<3){
+            mask = mask + ".";
+        }
+    }
+    document.getElementById("mask").value = mask;
+}
+
+</script>
+
+</body>
+</html>
